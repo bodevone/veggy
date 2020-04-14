@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import Product from './Product';
+import Header from './Header';
 
 
 class Cart extends Component {
@@ -34,8 +35,45 @@ class Cart extends Component {
           />
         );
       })
-    const view = <div className="products">{productsData}</div>
-    return <div className="products-wrapper">{view}</div>;
+    const noItems = (
+      <div className="empty-cart">
+        <img
+          src="https://www.pngkey.com/png/full/365-3654131_cart-empty-image-your-cart-is-empty.png"
+          alt="empty-cart"
+        />
+        <h2>You cart is empty!</h2>
+      </div>
+    )
+    // <h1 className="empty-cart">No items in your cart </h1>
+    const checkoutButton = (
+      <div className="checkout">
+        <button
+          type="button"
+        >
+          CHECKOUT
+        </button>
+      </div>
+    )
+    let view
+    if (Object.keys(this.state.cartList).length > 0) {
+      view = (
+        <div>
+          <div className="products">{productsData}</div>
+          {checkoutButton}
+        </div>
+      )
+    } else {
+      view = noItems
+    }
+    return (
+      <div>
+        <Header fromShop={false}/>
+        <div className="products-wrapper">
+          {view}
+        </div>
+      </div>
+      
+    );
   }
 }
 

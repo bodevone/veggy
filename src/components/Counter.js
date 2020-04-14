@@ -40,11 +40,11 @@ class Counter extends Component {
 
     return (
       <div className="stepper-input">
-        <div href="#" className="decrement" onClick={this.handleRemove.bind(this, product)}>
+        <div href="" className="decrement" onClick={this.handleRemove.bind(this, product)}>
           –
         </div>
         <div className="quantity">{this.state.quantity}</div>
-        <div href="#" className="increment" onClick={this.handleAdd.bind(this, product)}>
+        <div href="" className="increment" onClick={this.handleAdd.bind(this, product)}>
           +
         </div>
       </div>

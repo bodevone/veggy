@@ -1,10 +1,48 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
+import { searchProduct } from '../store/actions/productActions'
+
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleSearch = this.handleSearch.bind(this)
+  }
+  handleSearch(e) {
+    // this.props.searchProduct(e.target.value)
+    this.props.search(e.target.value)
+  }
   
   render() {
+    const search = (
+      <div className="search">
+        <div className="mobile-search" href="#">
+          <img
+            src="https://res.cloudinary.com/sivadass/image/upload/v1494756966/icons/search-green.png"
+            alt="search"
+          />
+        </div>
+        <form action="#" method="get" className={"search-form"}>
+          <div className="back-button" href="#">
+            <img
+              src="https://res.cloudinary.com/sivadass/image/upload/v1494756030/icons/back.png"
+              alt="back"
+            />
+          </div>
+          <input
+            type="search"
+            ref="searchBox"
+            placeholder="Search for Vegetables and Fruits"
+            onChange={this.handleSearch}
+            className="search-keyword"
+          />
+          <button className="search-button" type="submit" />
+        </form>
+      </div>
+    )
+
     return (
       <header>
         <div className="container">
@@ -18,31 +56,7 @@ class Header extends Component {
             </div>
           </Link>
           
-
-          <div className="search">
-            <div className="mobile-search" href="#">
-              <img
-                src="https://res.cloudinary.com/sivadass/image/upload/v1494756966/icons/search-green.png"
-                alt="search"
-              />
-            </div>
-            <form action="#" method="get" className={"search-form"}>
-              <div className="back-button" href="#">
-                <img
-                  src="https://res.cloudinary.com/sivadass/image/upload/v1494756030/icons/back.png"
-                  alt="back"
-                />
-              </div>
-              <input
-                type="search"
-                ref="searchBox"
-                placeholder="Search for Vegetables and Fruits"
-                className="search-keyword"
-              />
-              <button className="search-button" type="submit" />
-            </form>
-          </div>
-
+          {this.props.fromShop && search}
           <div className="cart">
             <div className="cart-info">
               <table>
@@ -89,6 +103,10 @@ const mapStateToProps = state => ({
   totalPrice: state.totalPrice
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch => ({
+  searchProduct: (term) => {dispatch(searchProduct(term))}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 
