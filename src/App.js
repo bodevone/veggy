@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import { getProducts } from './store/actions/productActions'
 import Header from './components/Header';
 import Products from './components/Products';
+import Cart from './components/Cart';
 import Footer from './components/Footer';
 
 
@@ -12,11 +14,16 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <Header />
-        <Products productList={this.props.products}/>
-        <Footer />
-      </div>
+      <BrowserRouter>
+        <div className="container">
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Products} />
+            <Route path="/cart" component={Cart} />
+          </Switch>
+          <Footer />
+        </div>
+      </BrowserRouter>
     );
   }
 }

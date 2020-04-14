@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS } from './types';
+import { FETCH_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART } from './types';
 
 export const getProducts = () => (dispatch, getState, axios) => {
   const url = 'https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json'
@@ -9,3 +9,17 @@ export const getProducts = () => (dispatch, getState, axios) => {
     })
   });
 };
+
+export const addToCart = (product) => (dispatch) => {
+  dispatch({
+    type: ADD_TO_CART,
+    product: product
+  })
+}
+
+export const removeFromCart = (product) => (dispatch) => {
+  dispatch({
+    type: REMOVE_FROM_CART,
+    product: product
+  })
+}

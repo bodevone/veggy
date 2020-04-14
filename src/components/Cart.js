@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Product from './Product';
 
 
-class Products extends Component {
+class Cart extends Component {
 
   render() {
     let productsData;
@@ -12,6 +12,7 @@ class Products extends Component {
       .map(product => {
         return (
           <Product
+            addToCart={this.props.addToCart}
             key={product.id}
             price={product.price}
             name={product.name}
@@ -29,4 +30,4 @@ const mapStateToProps = state => ({
   productList: state.products
 });
 
-export default connect(mapStateToProps)(Products);
+export default connect(mapStateToProps)(Cart);

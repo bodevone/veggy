@@ -1,73 +1,57 @@
 import React, {Component} from 'react';
-// import Counter from './Counter'
+import { connect } from 'react-redux'
+import { addToCart } from '../store/actions/productActions'
+
+import Counter from './Counter'
 
 class Product extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      quantity: 0
-    };
+      counter: false
+    }
+    
     this.addToCart = this.addToCart.bind(this)
-    this.handleUpdateQuantity = this.handleUpdateQuantity.bind(this)
-
+    this.changeCounter = this.changeCounter.bind(this)
   }
 
-  addToCart(image, name, price, id) {
-
-    let newQuantity = this.state.quantity + 1
-
-    this.setState({
-      quantity: newQuantity
-    },
-    function() {
-      let product = {
-        image: image,
-        name: name,
-        price: price,
-        id: id,
-        quantity: this.state.quantity
-      }
-      this.props.addToCart(product)
-    });
+  addToCart(product) {
+    this.props.addToCart(product)
+    if (!this.state.counter) {
+      this.setState({counter: true})
+    }
   }
 
-  handleUpdateQuantity(value) {
-    this.setState({
-      quantity: value
-    },
-    function() {
-      let product = {
-        image: this.props.image,
-        name: this.props.name,
-        price: this.props.price,
-        id: this.props.id,
-        quantity: this.state.quantity
-      }
-      this.props.addToCart(product)
-    });
+  changeCounter() {
+    this.setState({counter: false})
   }
 
   render() {
+
     let image = this.props.image
     let name = this.props.name
     let price = this.props.price
     let id = this.props.id
+    let product = {
+      image: image,
+      name: name,
+      price: price,
+      id: id
+    }
+
     let button = (
       <div className="product-action">
         <button
           type="button"
-          // onClick={this.addToCart.bind(this, image, name, price, id)}
+          onClick={this.addToCart.bind(this, product)}
         >
           ADD TO CART
         </button>
       </div>
     );
 
-    // if (this.state.quantity <= 0) {
-    //   button = 
-    // } else {
-    //   button = <Counter updateQuantity={this.handleUpdateQuantity}/>
-    // }
+    let counter = <Counter product={product} changeCounter={this.changeCounter}/>
 
     return (
       <div className="product">
@@ -80,11 +64,20 @@ class Product extends Component {
         <h4 className="product-name">{name}</h4>
         <p className="product-price">{price}</p>
 
-        {button}
+        {this.state.counter ? counter : button}
 
       </div>
     );
   }
 }
 
-export default Product;
+const mapStateToProps = state => ({
+  products: state.products,
+  cart: state.cart
+});
+
+const mapDispatchToProps = dispatch => ({
+  addToCart: (product) => {dispatch(addToCart(product))}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

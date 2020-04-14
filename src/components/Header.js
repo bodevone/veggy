@@ -1,32 +1,38 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom"
+import { connect } from 'react-redux'
 
 class Header extends Component {
+  
   render() {
     return (
       <header>
         <div className="container">
-          <div className="brand">
-            <img
-              className="logo"
-              src="https://res.cloudinary.com/sivadass/image/upload/v1493547373/dummy-logo/Veggy.png"
-              alt="Veggy Brand Logo"
-            />
-          </div>
+          <Link to="/">
+            <div className="brand">
+              <img
+                className="logo"
+                src="https://res.cloudinary.com/sivadass/image/upload/v1493547373/dummy-logo/Veggy.png"
+                alt="Veggy Brand Logo"
+              />
+            </div>
+          </Link>
+          
 
           <div className="search">
-            <a className="mobile-search" href="#">
+            <div className="mobile-search" href="#">
               <img
                 src="https://res.cloudinary.com/sivadass/image/upload/v1494756966/icons/search-green.png"
                 alt="search"
               />
-            </a>
+            </div>
             <form action="#" method="get" className={"search-form"}>
-              <a className="back-button" href="#">
+              <div className="back-button" href="#">
                 <img
                   src="https://res.cloudinary.com/sivadass/image/upload/v1494756030/icons/back.png"
                   alt="back"
                 />
-              </a>
+              </div>
               <input
                 type="search"
                 ref="searchBox"
@@ -58,17 +64,19 @@ class Header extends Component {
                 </tbody>
               </table>
             </div>
-            <a
-              className="cart-icon"
-              href="#"
-              ref="cartButton"
-            >
-              <img
-                src="https://res.cloudinary.com/sivadass/image/upload/v1493548928/icons/bag.png"
-                alt="Cart"
-              />
-              <span className="cart-count">{this.props.totalItems}</span>
-            </a>
+            <Link to="/cart">
+              <div
+                className="cart-icon"
+                href="#"
+                ref="cartButton"
+              >
+                <img
+                  src="https://res.cloudinary.com/sivadass/image/upload/v1493548928/icons/bag.png"
+                  alt="Cart"
+                />
+                <span className="cart-count">{this.props.totalItems}</span>
+              </div>
+            </Link>
           </div>
         </div>
       </header>
@@ -76,4 +84,11 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = state => ({
+  totalItems: state.totalItems,
+  totalPrice: state.totalPrice
+});
+
+export default connect(mapStateToProps)(Header);
+
+
