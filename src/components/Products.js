@@ -17,6 +17,7 @@ class Products extends Component {
             name={product.name}
             image={product.image}
             id={product.id}
+            fromCart={false}
           />
         );
       })

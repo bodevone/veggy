@@ -7,9 +7,12 @@ import Counter from './Counter'
 class Product extends Component {
   constructor(props) {
     super(props);
-
+    let counter = false
+    if (this.props.cart[this.props.id]) {
+      counter = true
+    }
     this.state = {
-      counter: false
+      counter: counter
     }
     
     this.addToCart = this.addToCart.bind(this)
@@ -50,8 +53,12 @@ class Product extends Component {
         </button>
       </div>
     );
-
-    let counter = <Counter product={product} changeCounter={this.changeCounter}/>
+    let counter
+    if (this.props.fromCart) {
+      counter = <Counter product={product} fromCart={this.props.fromCart} callNewCart={this.props.callNewCart}/>
+    } else {
+      counter = <Counter product={product} changeCounter={this.changeCounter} fromCart={this.props.fromCart}/>
+    }
 
     return (
       <div className="product">

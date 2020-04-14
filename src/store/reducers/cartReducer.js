@@ -10,7 +10,6 @@ const initState = {
 const cartReducer = (state = initState, action) => {
   let currCart
   let productID
-  let index
   let newTotalItems
   let newTotalPrice
 
@@ -25,7 +24,6 @@ const cartReducer = (state = initState, action) => {
       currCart = state.cart
       productID = addedProduct.id
 
-      // let exists = currCart.some(item => item.id === productID)
       let exists = currCart[productID]
 
       if (!exists) {
@@ -33,7 +31,6 @@ const cartReducer = (state = initState, action) => {
         currCart[productID] = addedProduct
       }
 
-      // index = currCart.findIndex(x => x.id === productID)
       currCart[productID].quantity += 1
 
       newTotalItems = 0
@@ -44,11 +41,6 @@ const cartReducer = (state = initState, action) => {
       }
 
       newTotalItems = Object.keys(currCart).length
-
-      // for (var i = 0; i < currCart.length; i++) {
-      //   newTotalPrice += currCart[i].price * parseInt(currCart[i].quantity);
-      // }
-      // newTotalItems = currCart.length;
 
       return {
         ...state,
@@ -61,23 +53,16 @@ const cartReducer = (state = initState, action) => {
       let removedProduct = action.product
       currCart = state.cart
       productID = removedProduct.id
-      // index = currCart.findIndex(x => x.id === productID)
 
-      // currCart[index].quantity -= 1
       currCart[productID].quantity -= 1
       if (currCart[productID].quantity <= 0) {
         delete currCart[productID]
-        // currCart = currCart.filter(item => item !== currCart[index])
       }
 
       newTotalItems = 0
       newTotalPrice = 0
 
       if (currCart) {
-        // for (var i = 0; i < currCart.length; i++) {
-        //   newTotalPrice += currCart[i].price * parseInt(currCart[i].quantity);
-        // }
-        // newTotalItems = currCart.length;
         for (const product of Object.values(currCart)) {
           newTotalPrice += product.price * parseInt(product.quantity)
         }
@@ -90,7 +75,6 @@ const cartReducer = (state = initState, action) => {
         totalItems: newTotalItems,
         totalPrice: newTotalPrice
       }
-
 
     default:
       return state;

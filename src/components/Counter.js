@@ -8,7 +8,7 @@ class Counter extends Component {
     super(props);
 
     this.state = {
-      quantity: 1
+      quantity: this.props.cart[this.props.product.id].quantity
     }
 
     this.handleRemove = this.handleRemove.bind(this);
@@ -25,7 +25,11 @@ class Counter extends Component {
   handleRemove(product) {
     this.props.removeFromCart(product)
     if (!this.props.cart[product.id]) {
-      this.props.changeCounter()
+      if (this.props.fromCart) {
+        this.props.callNewCart()
+      } else {
+        this.props.changeCounter()
+      }
     } else {
       this.setState({quantity: this.props.cart[product.id].quantity})
     }

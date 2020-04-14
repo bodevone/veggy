@@ -5,19 +5,32 @@ import Product from './Product';
 
 class Cart extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cartList: this.props.cartList
+    }
+    this.callNewCart = this.callNewCart.bind(this)
+  }
+
+  callNewCart() {
+    this.setState({cartList: this.props.cartList})
+  }
   render() {
     let productsData;
 
-    productsData = this.props.productList
-      .map(product => {
+    productsData = Object.keys(this.state.cartList)
+      .map(id => {
         return (
           <Product
-            addToCart={this.props.addToCart}
-            key={product.id}
-            price={product.price}
-            name={product.name}
-            image={product.image}
-            id={product.id}
+            key={id}
+            price={this.props.cartList[id].price}
+            name={this.props.cartList[id].name}
+            image={this.props.cartList[id].image}
+            id={this.props.cartList[id].id}
+            fromCart={true}
+            callNewCart={this.callNewCart}
           />
         );
       })
@@ -27,7 +40,7 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-  productList: state.products
+  cartList: state.cart
 });
 
 export default connect(mapStateToProps)(Cart);
