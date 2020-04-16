@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import Product from './Product';
-import Header from './Header';
+import NoResults from './NoResults';
+import { showSearch } from '../store/actions/productActions'
+
 
 
 
@@ -9,18 +11,20 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {term: this.props.searchTerm}
-    this.searchProduct = this.searchProduct.bind(this)
+    this.props.showSearch(true)
   }
 
-  searchProduct(term) {
-    this.setState({term: term})
+  componentDidUpdate(nextProps) {
+    if (nextProps.searchTerm !== this.state.term) {
+      this.setState({term: nextProps.searchTerm})
+    }
   }
-
 
   render() {
     let productsData;
 
     let term = this.state.term
+
 
     function searchingFor(term) {
       return function(x) {
@@ -41,11 +45,15 @@ class Products extends Component {
             fromCart={false}
           />
         );
-      })
-    const view = <div className="products">{productsData}</div>
+    })
+    let view
+    if (productsData.length <= 0 && term) {
+      view = <NoResults></NoResults>
+    } else {
+      view = <div className="products">{productsData}</div>
+    }
     return (
       <div>
-        <Header search={this.searchProduct} fromShop={true} />
         <div className="products-wrapper">{view}</div>
       </div>
     )
@@ -57,4 +65,9 @@ const mapStateToProps = state => ({
   searchTerm: state.searchTerm
 });
 
-export default connect(mapStateToProps)(Products);
+
+const mapDispatchToProps = dispatch => ({
+  showSearch: (value) => {dispatch(showSearch(value))}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

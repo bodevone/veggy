@@ -1,13 +1,15 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import Product from './Product';
-import Header from './Header';
+import { showSearch } from '../store/actions/productActions'
 
 
 class Cart extends Component {
 
   constructor(props) {
     super(props);
+
+    this.props.showSearch(false)
 
     this.state = {
       cartList: this.props.cartList
@@ -67,7 +69,6 @@ class Cart extends Component {
     }
     return (
       <div>
-        <Header fromShop={false}/>
         <div className="products-wrapper">
           {view}
         </div>
@@ -81,4 +82,8 @@ const mapStateToProps = state => ({
   cartList: state.cart
 });
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = dispatch => ({
+  showSearch: (value) => {dispatch(showSearch(value))}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

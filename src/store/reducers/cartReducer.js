@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, SEARCH_PRODUCTS } from '../actions/types'
+import { FETCH_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, SEARCH_PRODUCTS, SHOW_SEARCH } from '../actions/types'
 
 const cart = JSON.parse(localStorage.getItem('cart')) || {}
 const price = localStorage.getItem('totalPrice') || 0
@@ -9,7 +9,8 @@ const initState = {
   cart: cart,
   totalItems: items,
   totalPrice: price,
-  searchTerm: ""
+  searchTerm: "",
+  showSearch: true
 }
 
 const cartReducer = (state = initState, action) => {
@@ -92,7 +93,12 @@ const cartReducer = (state = initState, action) => {
     case SEARCH_PRODUCTS:
       return {
         ...state,
-        term: action.term
+        searchTerm: action.term
+      }
+    case SHOW_SEARCH:
+      return {
+        ...state,
+        showSearch: action.value
       }
 
     default:

@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, SEARCH_PRODUCTS } from './types';
+import { FETCH_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, SEARCH_PRODUCTS, SHOW_SEARCH } from './types';
 
 export const getProducts = () => (dispatch, getState, axios) => {
   const url = 'https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json'
@@ -28,5 +28,12 @@ export const searchProduct = (term) => (dispatch) => {
   dispatch({
     type: SEARCH_PRODUCTS,
     term: term
+  })
+}
+
+export const showSearch = (value) => (dispatch) => {
+  dispatch({
+    type: SHOW_SEARCH,
+    value: value
   })
 }

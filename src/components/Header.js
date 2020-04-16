@@ -8,24 +8,44 @@ class Header extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {mobile: false}
+
     this.handleSearch = this.handleSearch.bind(this)
+    this.mobileSearch = this.mobileSearch.bind(this)
+    this.mobileBack = this.mobileBack.bind(this)
+
   }
   handleSearch(e) {
-    // this.props.searchProduct(e.target.value)
-    this.props.search(e.target.value)
+    this.props.searchProduct(e.target.value)
+  }
+
+  mobileSearch(e) {
+    e.preventDefault()
+    this.setState({mobile: true})
+  }
+
+  mobileBack(e) {
+    e.preventDefault()
+    this.setState({mobile: false})
   }
   
   render() {
     const search = (
       <div className="search">
-        <div className="mobile-search" href="#">
+        <div
+          className="mobile-search"
+          onClick={this.mobileSearch}
+        >
           <img
             src="https://res.cloudinary.com/sivadass/image/upload/v1494756966/icons/search-green.png"
             alt="search"
           />
         </div>
-        <form action="#" method="get" className={"search-form"}>
-          <div className="back-button" href="#">
+        <form action="#" method="get" className={ this.state.mobile ? "search-form active" : "search-form" }>
+          <div
+            className="back-button"
+            onClick={this.mobileBack}
+          >
             <img
               src="https://res.cloudinary.com/sivadass/image/upload/v1494756030/icons/back.png"
               alt="back"
@@ -38,7 +58,7 @@ class Header extends Component {
             onChange={this.handleSearch}
             className="search-keyword"
           />
-          <button className="search-button" type="submit" />
+          <button className="search-button" type="submit" disabled={true}/>
         </form>
       </div>
     )
@@ -56,7 +76,7 @@ class Header extends Component {
             </div>
           </Link>
           
-          {this.props.fromShop && search}
+          {this.props.showSearch && search}
           <div className="cart">
             <div className="cart-info">
               <table>
@@ -100,7 +120,8 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
   totalItems: state.totalItems,
-  totalPrice: state.totalPrice
+  totalPrice: state.totalPrice,
+  showSearch: state.showSearch
 });
 
 const mapDispatchToProps = dispatch => ({
