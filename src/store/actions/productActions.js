@@ -1,7 +1,7 @@
 import { FETCH_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, SEARCH_PRODUCTS, SHOW_SEARCH } from './types';
 
 export const getProducts = () => (dispatch, getState, axios) => {
-  const url = 'https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json'
+  const url = 'http://localhost:1337/products'
   axios.get(url).then(res => {
     dispatch({
       type: FETCH_PRODUCTS,

@@ -11,12 +11,19 @@ class Product extends Component {
     if (this.props.cart[this.props.id]) {
       counter = true
     }
+    let quantity = 0
+    if (counter) {
+      quantity = this.props.cart[this.props.id].quantity
+    }
     this.state = {
-      counter: counter
+      counter: counter,
+      quantity: quantity
     }
     
     this.addToCart = this.addToCart.bind(this)
     this.changeCounter = this.changeCounter.bind(this)
+    this.newQuantity = this.newQuantity.bind(this)
+
   }
 
   addToCart(product) {
@@ -30,18 +37,34 @@ class Product extends Component {
     this.setState({counter: false})
   }
 
+  newQuantity(quantity) {
+    this.setState({quantity: quantity})
+  }
+
   render() {
 
     let image = this.props.image
     let name = this.props.name
     let price = this.props.price
     let id = this.props.id
+    let quantity_type = this.props.quantity_type
+    let quantity_single = this.props.quantity_single
     let product = {
       image: image,
       name: name,
       price: price,
-      id: id
+      id: id,
+      quantity_type: quantity_type,
+      quantity_single: quantity_single
     }
+
+    let type = ' шт'
+    if (quantity_type === 'kg') {
+      type = ' кг'
+    }
+    let single = quantity_single + type
+
+
 
     let button = (
       <div className="product-action">
@@ -55,21 +78,22 @@ class Product extends Component {
     );
     let counter
     if (this.props.fromCart) {
-      counter = <Counter product={product} fromCart={this.props.fromCart} callNewCart={this.props.callNewCart}/>
+      counter = <Counter product={product} fromCart={this.props.fromCart} callNewCart={this.props.callNewCart} newQuantity={this.newQuantity}/>
     } else {
-      counter = <Counter product={product} changeCounter={this.changeCounter} fromCart={this.props.fromCart}/>
+      counter = <Counter product={product} changeCounter={this.changeCounter} fromCart={this.props.fromCart} newQuantity={this.newQuantity}/>
     }
 
     return (
       <div className="product">
         <div className="product-image">
           <img
-            src={image}
+            src={"http://localhost:1337" + image}
             alt={name}
           />
         </div>
         <h4 className="product-name">{name}</h4>
-        <p className="product-price">{price}</p>
+        <h4 className="product-name">{this.state.counter ? '' : single}</h4>
+        <p className="product-price">{(this.state.quantity * price) || price}</p>
 
         {this.state.counter ? counter : button}
 

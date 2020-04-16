@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import { getProducts } from './store/actions/productActions'
-import Products from './components/Products';
+import Store from './components/Store';
 import Cart from './components/Cart';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -18,7 +18,7 @@ class App extends Component {
         <div className="container">
           <Header />
           <Switch>
-            <Route exact path="/" component={Products} />
+            <Route exact path="/" component={Store} />
             <Route path="/cart" component={Cart} />
           </Switch>
           <Footer />

@@ -7,7 +7,7 @@ import { showSearch } from '../store/actions/productActions'
 
 
 
-class Products extends Component {
+class Store extends Component {
   constructor(props) {
     super(props);
     this.state = {term: this.props.searchTerm}
@@ -25,7 +25,6 @@ class Products extends Component {
 
     let term = this.state.term
 
-
     function searchingFor(term) {
       return function(x) {
         return x.name.toLowerCase().includes(term.toLowerCase()) || !term;
@@ -40,8 +39,10 @@ class Products extends Component {
             key={product.id}
             price={product.price}
             name={product.name}
-            image={product.image}
+            image={product.image[0].url}
             id={product.id}
+            quantity_single={product.quantity}
+            quantity_type={product.quantity_type.name}
             fromCart={false}
           />
         );
@@ -70,4 +71,4 @@ const mapDispatchToProps = dispatch => ({
   showSearch: (value) => {dispatch(showSearch(value))}
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default connect(mapStateToProps, mapDispatchToProps)(Store);

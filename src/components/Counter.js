@@ -13,13 +13,14 @@ class Counter extends Component {
 
     this.handleRemove = this.handleRemove.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
+    this.newState = this.newState.bind(this);
+
   }
-
-
 
   handleAdd(product) {
     this.props.addToCart(product)
-    this.setState({quantity: this.props.cart[product.id].quantity})
+    this.newState(product.id)
+    
   }
 
   handleRemove(product) {
@@ -31,19 +32,36 @@ class Counter extends Component {
         this.props.changeCounter()
       }
     } else {
-      this.setState({quantity: this.props.cart[product.id].quantity})
+      this.newState(product.id)
+      // this.setState({quantity: this.props.cart[product.id].quantity})
     }
+  }
+
+  newState(id) {
+    this.setState(
+      {
+        quantity: this.props.cart[id].quantity
+      },
+      function() {
+        this.props.newQuantity(this.state.quantity)
+      })
   }
 
   render() {
     let product = this.props.product
+    let type
+    if (product.quantity_type === 'kg') {
+      type = ' кг'
+    } else {
+      type = ' шт'
+    }
 
     return (
       <div className="stepper-input">
         <div href="" className="decrement" onClick={this.handleRemove.bind(this, product)}>
           –
         </div>
-        <div className="quantity">{this.state.quantity}</div>
+        <div className="quantity">{(this.state.quantity * Number(product.quantity_single))  + type}</div>
         <div href="" className="increment" onClick={this.handleAdd.bind(this, product)}>
           +
         </div>

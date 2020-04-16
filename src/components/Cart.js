@@ -32,6 +32,9 @@ class Cart extends Component {
             name={this.props.cartList[id].name}
             image={this.props.cartList[id].image}
             id={this.props.cartList[id].id}
+            quantity={this.props.cartList[id].quantity}
+            quantity_type={this.props.cartList[id].quantity_type}
+            quantity_single={this.props.cartList[id].quantity_single}
             fromCart={true}
             callNewCart={this.callNewCart}
           />
