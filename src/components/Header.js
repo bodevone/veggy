@@ -79,7 +79,7 @@ class Header extends Component {
           {this.props.showSearch && search}
           <div className="cart">
             <div className="cart-info">
-              <table>
+              {/* <table>
                 <tbody>
                   <tr>
                     <td>No. of items</td>
@@ -96,7 +96,7 @@ class Header extends Component {
                     </td>
                   </tr>
                 </tbody>
-              </table>
+              </table> */}
             </div>
             <Link to="/cart">
               <div

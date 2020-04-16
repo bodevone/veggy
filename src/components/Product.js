@@ -92,7 +92,7 @@ class Product extends Component {
           />
         </div>
         <h4 className="product-name">{name}</h4>
-        <h4 className="product-name">{this.state.counter ? '' : single}</h4>
+        <h4 className="product-name">{this.state.counter ? ' ‏‏‎ ' : single}</h4>
         <p className="product-price">{(this.state.quantity * price) || price}</p>
 
         {this.state.counter ? counter : button}
