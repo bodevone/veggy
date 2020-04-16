@@ -173,3 +173,19 @@
   margin: auto;
   padding: 2rem;
 }
+
+.category {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.item {
+  margin: 6px;
+  border-radius: 8px;
+  background-color: $gray-medium;
+
+  &.active {
+    background-color: $primary-green;
+  }
+}

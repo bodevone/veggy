@@ -1,10 +1,39 @@
 .checkout {
   padding: 16px;
-  margin: auto;
 
   button {
+    height: 3rem;
+    background: $primary-orange;
+    display: block;
     margin: auto;
-    width: 60%;
+    width: 50%;
     transition: all 300ms ease-in;
+    font-size: 20px;
+  }
+}
+
+.total {
+  margin-top: 30px;
+  text-align: center;
+  color: $black;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+.empty-cart {
+  text-align: center;
+  img {
+    width: 100%;
+    max-width: 500px;
+    margin: 42px auto 16px auto;
+  }
+  h2 {
+    color: $gray-light;
+    font-size: 30px;
+  }
+  button {
+    opacity: 60%;
+    margin-top: 20px;
   }
 }

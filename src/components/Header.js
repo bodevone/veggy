@@ -54,7 +54,7 @@ class Header extends Component {
           <input
             type="search"
             ref="searchBox"
-            placeholder="Search for Vegetables and Fruits"
+            placeholder="Искать Фрукты и Овощи"
             onChange={this.handleSearch}
             className="search-keyword"
           />
@@ -78,7 +78,7 @@ class Header extends Component {
           
           {this.props.showSearch && search}
           <div className="cart">
-            <div className="cart-info">
+            {/* <div className="cart-info"> */}
               {/* <table>
                 <tbody>
                   <tr>
@@ -97,7 +97,7 @@ class Header extends Component {
                   </tr>
                 </tbody>
               </table> */}
-            </div>
+            {/* </div> */}
             <Link to="/cart">
               <div
                 className="cart-icon"

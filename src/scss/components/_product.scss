@@ -3,6 +3,8 @@
   margin: 16px;
   width: 200px;
   border-radius: 2px;
+  border: 0px;
+  
   .product-image {
     overflow: hidden;
     border-radius: 2px 2px 0 0;
@@ -24,6 +26,12 @@
   .product-name {
     font-weight: normal;
     font-size: 16px;
+    line-height: 25px;
+    margin-bottom: 8px;
+  }
+  .product-quantity {
+    font-weight: normal;
+    font-size: 14px;
     line-height: 20px;
     margin-bottom: 8px;
   }
@@ -37,7 +45,8 @@
     }
   }
   .product-name,
-  .product-price {
+  .product-price,
+  .product-quantity {
     color: $gray-medium;
     padding: 0 16px;
     text-align: center;
@@ -55,9 +64,14 @@
   &:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
+
+  &.active {
+    border: 1px solid $primary-orange;
+  }
 }
 
 .stepper-input {
+  padding-top: 16px;
   display: flex;
   display: -webkit-flex;
   color: $gray-medium;
@@ -65,6 +79,7 @@
   margin: 0 auto;
   .increment,
   .decrement {
+    cursor: pointer;
     height: 24px;
     width: 24px;
     border: 1px solid $gray-eighty;

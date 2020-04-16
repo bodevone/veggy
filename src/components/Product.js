@@ -72,7 +72,7 @@ class Product extends Component {
           type="button"
           onClick={this.addToCart.bind(this, product)}
         >
-          ADD TO CART
+          ДОБАВИТЬ
         </button>
       </div>
     );
@@ -84,7 +84,7 @@ class Product extends Component {
     }
 
     return (
-      <div className="product">
+      <div className={ this.state.counter ? "product active" : "product" }>
         <div className="product-image">
           <img
             src={"http://localhost:1337" + image}
@@ -92,7 +92,7 @@ class Product extends Component {
           />
         </div>
         <h4 className="product-name">{name}</h4>
-        <h4 className="product-name">{this.state.counter ? ' ‏‏‎ ' : single}</h4>
+        <h4 className="product-quantity">{this.state.counter ? ' ‏‏‎ ' : single}</h4>
         <p className="product-price">{(this.state.quantity * price) || price}</p>
 
         {this.state.counter ? counter : button}

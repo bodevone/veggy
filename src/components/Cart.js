@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
+import { Link } from "react-router-dom"
 import Product from './Product';
 import { showSearch } from '../store/actions/productActions'
 
@@ -46,7 +47,12 @@ class Cart extends Component {
           src="https://www.pngkey.com/png/full/365-3654131_cart-empty-image-your-cart-is-empty.png"
           alt="empty-cart"
         />
-        <h2>You cart is empty!</h2>
+        <h2>Ваша Корзина пустая!</h2>
+        <Link to='/'>
+          <button type="button">
+            Вернуться в Магазин
+          </button>
+        </Link>
       </div>
     )
     // <h1 className="empty-cart">No items in your cart </h1>
@@ -55,7 +61,7 @@ class Cart extends Component {
         <button
           type="button"
         >
-          CHECKOUT
+          ОФОРМИТЬ ПОКУПКУ
         </button>
       </div>
     )
@@ -63,6 +69,7 @@ class Cart extends Component {
     if (Object.keys(this.state.cartList).length > 0) {
       view = (
         <div>
+          <div className="total">Общая сумма: {this.props.total} тг</div>
           <div className="products">{productsData}</div>
           {checkoutButton}
         </div>
@@ -82,7 +89,8 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-  cartList: state.cart
+  cartList: state.cart,
+  total: state.totalPrice
 });
 
 const mapDispatchToProps = dispatch => ({

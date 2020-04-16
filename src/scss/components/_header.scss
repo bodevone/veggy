@@ -91,6 +91,7 @@ header {
   }
   .search-button {
     border-radius: 0 2px 2px 0;
+    
     background: $primary-green
       url(https://res.cloudinary.com/sivadass/image/upload/v1494692031/icons/search.png)
       center no-repeat;
@@ -121,15 +122,13 @@ header {
 
 // Cart
 .cart { 
-
-  align-self: flex-end;
   display: flex;
   display: -webkit-flex;
   margin-left: auto;
   position: relative;
   z-index: 99;
   @media (max-width: 991px) {
-    margin-left: 16px;
+    margin-left: auto;
   }
 }
 .cart-info {
@@ -200,32 +199,6 @@ header {
     z-index: 1;
   }
 }
-.cart-preview.active {
-  z-index: 99;
-  display: block;
-  position: absolute;
-  top: 48px;
-  right: 0;
-  width: 360px;
-  height: 388px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  @media (max-width: 400px) {
-    top: 45px;
-    width: 100%;
-    min-width: 300px;
-    & > div {
-      width: 100% !important;
-    }
-    .cart-items {
-      width: 100%;
-    }
-    .stepper-input {
-      a {
-        display: none;
-      }
-    }
-  }
-}
 
 .action-block {
   background: $white;
@@ -241,18 +214,6 @@ header {
       opacity: 0.3;
       cursor: not-allowed;
     }
-  }
-}
-.empty-cart {
-  text-align: center;
-  img {
-    width: 100%;
-    max-width: 500px;
-    margin: 42px auto 16px auto;
-  }
-  h2 {
-    color: $gray-light;
-    font-size: 30px;
   }
 }
 .cart-items {

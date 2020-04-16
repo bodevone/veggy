@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, SEARCH_PRODUCTS, SHOW_SEARCH } from './types';
+import { FETCH_PRODUCTS, ADD_TO_CART, REMOVE_FROM_CART, SEARCH_PRODUCTS, SHOW_SEARCH, CHANGE_CATEGORY } from './types';
 
 export const getProducts = () => (dispatch, getState, axios) => {
   const url = 'http://localhost:1337/products'
@@ -34,6 +34,13 @@ export const searchProduct = (term) => (dispatch) => {
 export const showSearch = (value) => (dispatch) => {
   dispatch({
     type: SHOW_SEARCH,
+    value: value
+  })
+}
+
+export const changeCategory = (value) => (dispatch) => {
+  dispatch({
+    type: CHANGE_CATEGORY,
     value: value
   })
 }
