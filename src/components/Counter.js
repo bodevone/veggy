@@ -51,9 +51,9 @@ class Counter extends Component {
     let product = this.props.product
     let type
     if (product.quantity_type === 'kg') {
-      type = ' кг'
+      type = ' kg'
     } else {
-      type = ' шт'
+      type = ' items'
     }
 
     return (
