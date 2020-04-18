@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer>
       <p className="footer-links">
-        <a href="https://github.com/bodevone">
+        <a href="https://github.com/bodevone/veggy">
           Github Source Code
         </a>
         <span> / </span>
