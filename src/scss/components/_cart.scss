@@ -11,7 +11,7 @@
     font-size: 20px;
     margin-bottom: 1rem;
     &:hover {
-      opacity: 80%;
+      opacity: 0.8;
       // background: $gray-light;
     }
   }
@@ -38,7 +38,7 @@
     font-size: 30px;
   }
   button {
-    opacity: 60%;
+    opacity: 0.6;
     margin-top: 20px;
   }
 }
