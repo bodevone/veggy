@@ -40,8 +40,8 @@
     font-weight: 700;
     line-height: 22px;
     margin-bottom: 16px;
-    &:after {
-      content: " тг";
+    &:before {
+      content: "$";
     }
   }
   .product-name,

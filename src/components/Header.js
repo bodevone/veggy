@@ -54,7 +54,7 @@ class Header extends Component {
           <input
             type="search"
             ref="searchBox"
-            placeholder="Искать Фрукты и Овощи"
+            placeholder="Search for vegatbles, fruits and nuts"
             onChange={this.handleSearch}
             className="search-keyword"
           />

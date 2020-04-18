@@ -58,9 +58,9 @@ class Product extends Component {
       quantity_single: quantity_single
     }
 
-    let type = ' шт'
+    let type = ' items'
     if (quantity_type === 'kg') {
-      type = ' кг'
+      type = ' kg'
     }
     let single = quantity_single + type
 
@@ -72,7 +72,7 @@ class Product extends Component {
           type="button"
           onClick={this.addToCart.bind(this, product)}
         >
-          ДОБАВИТЬ
+          ADD TO CART
         </button>
       </div>
     );
@@ -87,7 +87,7 @@ class Product extends Component {
       <div className={ this.state.counter ? "product active" : "product" }>
         <div className="product-image">
           <img
-            src={"http://localhost:1337" + image}
+            src={image}
             alt={name}
           />
         </div>

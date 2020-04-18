@@ -9,6 +9,8 @@ class CategoryList extends Component {
     this.handleAllClick = this.handleAllClick.bind(this)
     this.handleVegetableClick = this.handleVegetableClick.bind(this)
     this.handleFruitClick = this.handleFruitClick.bind(this)
+    this.handleNutsClick = this.handleNutsClick.bind(this)
+
   }
 
   handleAllClick() {
@@ -23,12 +25,18 @@ class CategoryList extends Component {
     this.props.changeCategory('fruit')
   }
 
+  handleNutsClick() {
+    this.props.changeCategory('nuts')
+  }
+
   render() {
     return (
       <div className="category">
-          <button className={this.props.category === 'all' ? "item active" : "item"} onClick={this.handleAllClick}>Все</button>
-          <button className={this.props.category === 'vegetable' ? "item active" : "item"} onClick={this.handleVegetableClick}>Овощи</button>
-          <button className={this.props.category === 'fruit' ? "item active" : "item"} onClick={this.handleFruitClick}>Фрукты</button>
+          <button className={this.props.category === 'all' ? "item active" : "item"} onClick={this.handleAllClick}>All</button>
+          <button className={this.props.category === 'vegetable' ? "item active" : "item"} onClick={this.handleVegetableClick}>Vegetables</button>
+          <button className={this.props.category === 'fruit' ? "item active" : "item"} onClick={this.handleFruitClick}>Fruits</button>
+          <button className={this.props.category === 'nuts' ? "item active" : "item"} onClick={this.handleNutsClick}>Nuts</button>
+      
       </div>
     );
     

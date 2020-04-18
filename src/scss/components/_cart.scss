@@ -9,6 +9,11 @@
     width: 50%;
     transition: all 300ms ease-in;
     font-size: 20px;
+    margin-bottom: 1rem;
+    &:hover {
+      opacity: 80%;
+      // background: $gray-light;
+    }
   }
 }
 

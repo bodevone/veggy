@@ -5,23 +5,15 @@ function Footer() {
     <footer>
       <p className="footer-links">
         <a href="https://github.com/bodevone">
-          View Source on Github
+          Github Source Code
         </a>
         <span> / </span>
-        <a href="https://github.com/bodevone">
-          Need any help?
-        </a>
-        <span> / </span>
-        <a href="https://github.com/bodevone">
-          Say Hi on Twitter
-        </a>
-        <span> / </span>
-        <a href="https://github.com/bodevone">
-          Read My Blog
+        <a href="https://github.com/sivadass/react-shopping-cart">
+          Thanks to sivadass
         </a>
       </p>
       <p>
-        &copy; {new Date().getFullYear()} <strong>Veggy</strong> - Organic Green Store
+        &copy; {new Date().getFullYear()} <strong>Veggy</strong>
       </p>
     </footer>
   );

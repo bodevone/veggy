@@ -16,11 +16,18 @@ class Cart extends Component {
       cartList: this.props.cartList
     }
     this.callNewCart = this.callNewCart.bind(this)
+    this.checkoutHandler = this.checkoutHandler.bind(this)
+
   }
 
   callNewCart() {
     this.setState({cartList: this.props.cartList})
   }
+
+  checkoutHandler() {
+    alert('Checkout procedure')
+  }
+
   render() {
     let productsData;
 
@@ -47,10 +54,10 @@ class Cart extends Component {
           src="https://www.pngkey.com/png/full/365-3654131_cart-empty-image-your-cart-is-empty.png"
           alt="empty-cart"
         />
-        <h2>Ваша Корзина пустая!</h2>
+        <h2>Your Cart is empty!</h2>
         <Link to='/'>
           <button type="button">
-            Вернуться в Магазин
+            Return to the Store
           </button>
         </Link>
       </div>
@@ -58,18 +65,16 @@ class Cart extends Component {
     // <h1 className="empty-cart">No items in your cart </h1>
     const checkoutButton = (
       <div className="checkout">
-        <button
-          type="button"
-        >
-          ОФОРМИТЬ ПОКУПКУ
-        </button>
+      <button type="button" onClick={this.checkoutHandler}>
+        CHECKOUT
+      </button>
       </div>
     )
     let view
     if (Object.keys(this.state.cartList).length > 0) {
       view = (
         <div>
-          <div className="total">Общая сумма: {this.props.total} тг</div>
+          <div className="total">Total price: ${this.props.total}</div>
           <div className="products">{productsData}</div>
           {checkoutButton}
         </div>
